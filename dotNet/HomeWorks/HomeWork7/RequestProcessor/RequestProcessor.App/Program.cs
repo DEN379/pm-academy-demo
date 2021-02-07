@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Net.Http;
 using System.Threading.Tasks;
+using RequestProcessor.App.Logging;
 using RequestProcessor.App.Menu;
+using RequestProcessor.App.Services;
 
 namespace RequestProcessor.App
 {
@@ -17,8 +20,14 @@ namespace RequestProcessor.App
         {
             try
             {
-                // ToDo: Null arguments should be replaced with correct implementations.
-                var mainMenu = new MainMenu(null, null, null);
+                ILogger logger = new Logger();
+                IOptionsSource optionsSource = new OptionSource("options.json");
+                IRequestPerformer requestPerformer = new RequestPerformer(
+                    new RequestHandler(new HttpClient()),
+                    new ResponseHandler(),
+                    logger
+                    );
+                var mainMenu = new MainMenu(requestPerformer, optionsSource, logger);
                 return await mainMenu.StartAsync();
             }
             catch (Exception ex)
