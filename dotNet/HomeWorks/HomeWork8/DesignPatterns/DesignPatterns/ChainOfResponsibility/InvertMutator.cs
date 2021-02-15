@@ -1,15 +1,12 @@
+using System.Linq;
+
 namespace DesignPatterns.ChainOfResponsibility
 {
-    public class InvertMutator : IStringMutator
+    public class InvertMutator : StringMutator
     {
-        public IStringMutator SetNext(IStringMutator next)
+        public override string Mutate(string str)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public string Mutate(string str)
-        {
-            throw new System.NotImplementedException();
+            return base.Mutate(new string(str.Reverse().ToArray()));
         }
     }
 }

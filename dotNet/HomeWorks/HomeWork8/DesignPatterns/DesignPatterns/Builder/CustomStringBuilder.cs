@@ -1,43 +1,55 @@
+using System.Collections.Generic;
+
 namespace DesignPatterns.Builder
 {
     public class CustomStringBuilder : ICustomStringBuilder
     {
+        private LinkedList<string> list;
         public CustomStringBuilder()
         {
+            list = new LinkedList<string>();
         }
 
         public CustomStringBuilder(string text)
         {
+            list = new LinkedList<string>();
+            list.AddFirst(text);
         }
 
         public ICustomStringBuilder Append(string str)
         {
-            throw new System.NotImplementedException();
+            list.AddLast(str);
+            return this;
         }
 
         public ICustomStringBuilder Append(char ch)
         {
-            throw new System.NotImplementedException();
+            
+            list.AddLast(ch+"");
+            return this;
         }
 
         public ICustomStringBuilder AppendLine()
         {
-            throw new System.NotImplementedException();
+            list.AddLast("\n");
+            return this;
         }
 
         public ICustomStringBuilder AppendLine(string str)
         {
-            throw new System.NotImplementedException();
+            list.AddLast(str + "\n");
+            return this;
         }
 
         public ICustomStringBuilder AppendLine(char ch)
         {
-            throw new System.NotImplementedException();
+            list.AddLast(ch + "\n");
+            return this;
         }
 
         public string Build()
         {
-            throw new System.NotImplementedException();
+            return string.Join("", list);
         }
     }
 }

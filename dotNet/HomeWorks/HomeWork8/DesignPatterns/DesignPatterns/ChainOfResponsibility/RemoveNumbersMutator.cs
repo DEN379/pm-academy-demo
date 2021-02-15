@@ -1,15 +1,12 @@
+using System.Linq;
+
 namespace DesignPatterns.ChainOfResponsibility
 {
-    public class RemoveNumbersMutator : IStringMutator
+    public class RemoveNumbersMutator : StringMutator
     {
-        public IStringMutator SetNext(IStringMutator next)
+        public override string Mutate(string str)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public string Mutate(string str)
-        {
-            throw new System.NotImplementedException();
+            return base.Mutate(new string(str.Where(numb => !int.TryParse(numb.ToString(), out int n)).ToArray()));
         }
     }
 }

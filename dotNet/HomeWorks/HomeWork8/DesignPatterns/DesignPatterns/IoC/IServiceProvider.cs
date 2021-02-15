@@ -1,4 +1,6 @@
-﻿namespace DesignPatterns.IoC
+﻿
+
+namespace DesignPatterns.IoC
 {
     public interface IServiceProvider
     {

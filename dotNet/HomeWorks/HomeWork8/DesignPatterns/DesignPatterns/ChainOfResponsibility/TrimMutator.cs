@@ -1,15 +1,10 @@
 namespace DesignPatterns.ChainOfResponsibility
 {
-    public class TrimMutator : IStringMutator
+    public class TrimMutator : StringMutator
     {
-        public IStringMutator SetNext(IStringMutator next)
+        public override string Mutate(string str)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public string Mutate(string str)
-        {
-            throw new System.NotImplementedException();
+            return base.Mutate(str.Trim());
         }
     }
 }
